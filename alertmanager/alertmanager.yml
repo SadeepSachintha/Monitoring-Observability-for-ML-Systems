@@ -1,0 +1,11 @@
+route:
+  receiver: 'mock-receiver'
+  group_wait: 10s
+  group_interval: 5m
+  repeat_interval: 1h
+
+receivers:
+  - name: 'mock-receiver'
+    # In a real scenario, this would be a Slack webhook or email config
+    # webhook_configs:
+    #  - url: 'http://my-slack-webhook-url'

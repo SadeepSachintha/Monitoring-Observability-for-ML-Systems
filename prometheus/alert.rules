@@ -1,0 +1,20 @@
+groups:
+  - name: ML_Alerts
+    rules:
+      - alert: HighDataDrift
+        expr: data_drift_score > 3.0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Data Drift Detected"
+          description: "Data drift score (Z-score average) is {{ $value }}, which is above the threshold of 3.0."
+
+      - alert: HighApiLatency
+        expr: rate(api_request_latency_seconds_sum[1m]) / rate(api_request_latency_seconds_count[1m]) > 1.0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API Latency"
+          description: "Average API latency over the last 1 minute is {{ $value }}s, exceeding 1.0s."
